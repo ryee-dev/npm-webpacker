@@ -8,45 +8,45 @@ For now, this script will install all the important and relevant plugins, script
 
 These include:
 
-# create package.json
-# dependency: webpack development dependency
-# dependency: allow webpack use from command line (CLI - command line interface)
-# dependency: jquery
-# dependency: popper
-# dependency: bootstrap
-# dependency: styles.css
-# dependency (plugin): webpack plugin
-# dependency (plugin): webpack declutterer
-# dependency (plugin): uglify
-# dependency (plugin): webpack development server
-# dependency (linter): eslint
-# dependenct (linter): eslint loader
+~ create package.json
+~ dependency: webpack development dependency
+~ dependency: allow webpack use from command line (CLI - command line interface)
+~ dependency: jquery
+~ dependency: popper
+~ dependency: bootstrap
+~ dependency: styles.css
+~ dependency (plugin): webpack plugin
+~ dependency (plugin): webpack declutterer
+~ dependency (plugin): uglify
+~ dependency (plugin): webpack development server
+~ dependency (linter): eslint
+~ dependenct (linter): eslint loader
 
-# jasmine node module
-# jasmine helper package
-# initialize jasmine
+~ jasmine node module
+~ jasmine helper package
+~ initialize jasmine
 
 
-## YOU MUST MANUALLY UPDATE PACKAGE.JSON!
+### YOU MUST MANUALLY UPDATE PACKAGE.JSON!
    "scripts": {
      "test": "jasmine"
     }
 
-# karma test-runner
-# integrate jasmine and karma
-# specify chrome browser
-# karma cli
-# karma webpack integration
-# karma jquery integration
-# karma testing reporter
+~ karma test-runner
+~ integrate jasmine and karma
+~ specify chrome browser
+~ karma cli
+~ karma webpack integration
+~ karma jquery integration
+~ karma testing reporter
 # initialize karma
 
-# MANUALLY UPDATE PACKAGE.JSON
+### MANUALLY UPDATE PACKAGE.JSON
   "scripts": {
     "test": "karma start karma.conf.js"
     },
 
-# MANUALLY UPDATE WEBPACK.CONFIG.JS
+### MANUALLY UPDATE WEBPACK.CONFIG.JS
 {
   test: /\.js$/,
   exclude: [
@@ -77,7 +77,7 @@ $ ruby launch.rb
 - does not fully update the webpack.config.js file
 - these must be manually updated.
 
-## Contact
+#~ Contact
 If you have any questions or anything lmk.
 
 Goodnight!

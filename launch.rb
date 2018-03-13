@@ -13,7 +13,6 @@ class Project
     @project_title = project_title
     @git_name = git_name
     @user_name = user_name
-
   end
 
   def create
@@ -94,12 +93,10 @@ class Project
       file.write(
         "const path = require('path');\nconst HtmlWebpackPlugin = require('html-webpack-plugin');\nconst CleanWebpackPlugin = require('clean-webpack-plugin');\nconst UglifyJsPlugin = require('uglifyjs-webpack-plugin');\n\nmodule.exports = {\n  entry: './src/main.js',\n  output: {\n    filename: 'bundle.js',\n    path: path.resolve(__dirname, 'dist')\n  },\n  devtool: 'eval-source-map',\n  devServer: {\n    contentBase: './dist'\n  },\n  plugins: [\n    new UglifyJsPlugin({ sourceMap: true }),\n    new CleanWebpackPlugin(['dist']),\n    new HtmlWebpackPlugin({\n      title: '#{@project_title}',\n      template: './src/index.html',\n      inject: 'body'\n    })\n  ],\n  module: {\n    rules: [\n      {\n        test: /\.css$/,\n        use: [\n          'style-loader',\n          'css-loader'\n        ]\n      }\n    ]\n  }\n};"
         ) }
-
+        
     File.write(f = "package.json",
       File.read(f).gsub(/'test': 'echo \'Error: no test specified\' && exit 1'/, "'build': 'webpack --mode development',\n    'start': 'npm run build; webpack-dev-server --open'"))
-
   end
-
 end
 
 puts 'Enter project name: '

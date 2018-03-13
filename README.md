@@ -42,19 +42,22 @@ These include:
 # initialize karma
 
 ### MANUALLY UPDATE PACKAGE.JSON
+```
   "scripts": {
     "test": "karma start karma.conf.js"
     },
-
+```
 ### MANUALLY UPDATE WEBPACK.CONFIG.JS
+```
 {
   test: /\.js$/,
   exclude: [
     /node_modules/,
     /spec/
     ],
-    loader: "eslint-loader"
-  }
+  loader: "eslint-loader"
+}
+```
 
 
 ## Instructions

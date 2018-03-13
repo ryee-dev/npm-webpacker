@@ -77,7 +77,7 @@ class Project
     # basic index template
     File.open('src/index.html', 'w') { |file|
       file.write(
-        "<!DOCTYPE html>\n<html>\n  <head>\n    <title>#{@project_title}</title>\n  </head>\n  <body>\n    <h1>#{@project_name}</h1>\n  </body>\n</html>"
+        "<!DOCTYPE html>\n<html>\n  <head>\n    <title>#{@project_title}</title>\n  </head>\n  <body>\n    <h1>#{@project_title}</h1>\n  </body>\n</html>"
         ) }
 
     File.open('src/main.js', 'w') { |file|
@@ -90,7 +90,7 @@ class Project
         "node_modules/\n.DS_Store"
         ) }
 
-    File.open('webpack.config.js') { |file|
+    File.open('webpack.config.js', 'w') { |file|
       file.write(
         "const path = require('path');\nconst HtmlWebpackPlugin = require('html-webpack-plugin');\nconst CleanWebpackPlugin = require('clean-webpack-plugin');\nconst UglifyJsPlugin = require('uglifyjs-webpack-plugin');\n\nmodule.exports = {\n  entry: './src/main.js',\n  output: {\n    filename: 'bundle.js',\n    path: path.resolve(__dirname, 'dist')\n  },\n  devtool: 'eval-source-map',\n  devServer: {\n    contentBase: './dist'\n  },\n  plugins: [\n    new UglifyJsPlugin({ sourceMap: true }),\n    new CleanWebpackPlugin(['dist']),\n    new HtmlWebpackPlugin({\n      title: '#{@project_title}',\n      template: './src/index.html',\n      inject: 'body'\n    })\n  ],\n  module: {\n    rules: [\n      {\n        test: /\.css$/,\n        use: [\n          'style-loader',\n          'css-loader'\n        ]\n      }\n    ]\n  }\n};"
         ) }

@@ -113,6 +113,11 @@ class Project
         #   loader: "eslint-loader"
           # }
 
+    File.open('.gitignore', 'w') { |file|
+      file.write(
+        "node_modules/\ndist/"
+        ) }
+
     File.open('.eslintrc', 'w') { |file|
       file.write(
         "{\n  'parserOptions': {\n    'ecmaVersion': 6,\n    'sourceType': 'module'\n  },\n  'extends': 'eslint:recommended',\n  'env': {\n    'browser': true,\n    'jquery': true\n    'node': true\n  },\n  'rules': {\n    'semi': 1,\n    'indent': ['warn', 2],\n    'no-console': 'warn',\n    'no-debugger': 'warn'\n  }\n}"

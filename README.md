@@ -39,6 +39,10 @@ These include:
 - karma testing reporter
 - initialize karma
 
+### Babel
+
+- babel loader
+
 # MANUALLY UPDATE PACKAGE.JSON
 
 ### replace
@@ -76,7 +80,7 @@ $ cd npm-webpacker/
 $ ruby launch.rb
 ```
 
-## Current Bugs
+## Changelog
 
 #### v. 1.0.1
 - fixes webpack.config.js syntax errors (*credit to: @logmannn, thanks!*)

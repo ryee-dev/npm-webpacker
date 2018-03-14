@@ -140,7 +140,7 @@ class Project
 
     File.open('karma.conf.js', 'w') { |file|
       file.write(
-        "const webpackConfig = require('./webpack.config.js');\nmodule.exports = function(config) {\n  config.set({\n    basePath: '',\n    frameworks: ['jquery-3.2.1', 'jasmine'],\n    files: [\n      'src/*.js',\n      'spec/*spec.js'\n    ],\n    webpack: webpackConfig,\n    exclude: [\n    ],\n    preprocessors: {\n      'src/*.js': ['webpack'],\n      'spec/*spec.js': ['webpack']\n    },\n    plugins: [\n      'karma-jquery',\n      'karma-webpack',\n      'karma-jasmine',\n      'karma-chrome-launcher',\n      'karma-jasmine-html-reporter'\n    ],\n    reporters: ['progress', 'kjhtml'],\n    port: 9876,\n    colors: true,\n    logLevel: config.LOG_INFO,\n    autoWatch: true,\n    browsers: ['Chrome'],\n    singleRun:: false,\n    concurrency: Infinity\n  })\n}"
+        "const webpackConfig = require('./webpack.config.js');\nmodule.exports = function(config) {\n  config.set({\n    basePath: '',\n    frameworks: ['jquery-3.2.1', 'jasmine'],\n    files: [\n      'src/*.js',\n      'spec/*spec.js'\n    ],\n    webpack: webpackConfig,\n    exclude: [\n    ],\n    preprocessors: {\n      'src/*.js': ['webpack'],\n      'spec/*spec.js': ['webpack']\n    },\n    plugins: [\n      'karma-jquery',\n      'karma-webpack',\n      'karma-jasmine',\n      'karma-chrome-launcher',\n      'karma-jasmine-html-reporter'\n    ],\n    reporters: ['progress', 'kjhtml'],\n    port: 9876,\n    colors: true,\n    logLevel: config.LOG_INFO,\n    autoWatch: true,\n    browsers: ['Chrome'],\n    singleRun: false,\n    concurrency: Infinity\n  })\n}"
       )
     }
 

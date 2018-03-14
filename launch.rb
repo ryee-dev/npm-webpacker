@@ -60,7 +60,7 @@ class Project
       system 'npm install webpack-dev-server@3.1.0 --save-dev'
       # dependency (linter): eslint
       system 'npm install eslint@4.18.2 --save-dev'
-      # dependenct (linter): eslint loader
+      # dependency (linter): eslint loader
       system 'npm install eslint-loader@2.0.0 --save-dev'
 
       ## jasmine installation
@@ -94,6 +94,10 @@ class Project
         # initialize karma
         system 'karma init'
 
+      ## babel installation
+        # core
+        system 'npm install babel-core@6.26.0 babel-loader@7.1.3 babel-preset-es2015@6.24.1 --save-dev'
+
         # MANUALLY UPDATE PACKAGE.JSON
           # "scripts": {
           #   "test": "karma start karma.conf.js"
@@ -111,7 +115,7 @@ class Project
 
     File.open('.eslintrc', 'w') { |file|
       file.write(
-        "{\n  'parserOptions': {\n    'ecmaVersion': 6,\n    'sourceType': 'module'\n  },\n  'extends': 'eslint:recommended',\n  'env': {\n    'browser': true,\n    'jquery': true\n  },\n  'rules': {\n    'semi': 1,\n    'indent': ['warn', 2],\n    'no-console': 'warn',\n    'no-debugger': 'warn'\n  }\n}"
+        "{\n  'parserOptions': {\n    'ecmaVersion': 6,\n    'sourceType': 'module'\n  },\n  'extends': 'eslint:recommended',\n  'env': {\n    'browser': true,\n    'jquery': true\n    'node': true\n  },\n  'rules': {\n    'semi': 1,\n    'indent': ['warn', 2],\n    'no-console': 'warn',\n    'no-debugger': 'warn'\n  }\n}"
         ) }
 
     File.open('src/index.html', 'w') { |file|
@@ -126,7 +130,7 @@ class Project
 
     File.open('webpack.config.js', 'w') { |file|
       file.write(
-        "const path = require('path');\nconst HtmlWebpackPlugin = require('html-webpack-plugin');\nconst CleanWebpackPlugin = require('clean-webpack-plugin');\nconst UglifyJsPlugin = require('uglifyjs-webpack-plugin');\n\nmodule.exports = {\n  entry: './src/main.js',\n  output: {\n    filename: 'bundle.js',\n    path: path.resolve(__dirname, 'dist')\n  },\n  devtool: 'eval-source-map',\n  devServer: {\n    contentBase: './dist'\n  },\n  plugins: [\n    new UglifyJsPlugin({ sourceMap: true }),\n    new CleanWebpackPlugin(['dist']),\n    new HtmlWebpackPlugin({\n      title: '#{@project_title}',\n      template: './src/index.html',\n      inject: 'body'\n    })\n  ],\n  module: {\n    rules: [\n      {\n        test: /\.css$/,\n        use: [\n          'style-loader',\n          'css-loader'\n        ]\n      },\n      {        test: /\.js$/,\n        exclude:[\n          /node_modules/,\n          /spec/\n        ],\n        loader: 'eslint-loader'\n      }\n    ]\n  }\n};"
+        "const path = require('path');\nconst HtmlWebpackPlugin = require('html-webpack-plugin');\nconst CleanWebpackPlugin = require('clean-webpack-plugin');\nconst UglifyJsPlugin = require('uglifyjs-webpack-plugin');\n\nmodule.exports = {\n  entry: './src/main.js',\n  output: {\n    filename: 'bundle.js',\n    path: path.resolve(__dirname, 'dist')\n  },\n  devtool: 'eval-source-map',\n  devServer: {\n    contentBase: './dist'\n  },\n  plugins: [\n    new UglifyJsPlugin({ sourceMap: true }),\n    new CleanWebpackPlugin(['dist']),\n    new HtmlWebpackPlugin({\n      title: '#{@project_title}',\n      template: './src/index.html',\n      inject: 'body'\n    })\n  ],\n  module: {\n    rules: [\n      {\n        test: /\.css$/,\n        use: [\n          'style-loader',\n          'css-loader'\n        ]\n      },\n      {        test: /\.js$/,\n        exclude:[\n          /node_modules/,\n          /spec/\n        ],\n        loader: 'eslint-loader'\n      },\n      {\n        test: /\.js$/,\n        exclude: [\n          /node_modules/,\n          /spec/\n        ],\n        loader:'babel-loader',\n        options: {\n          presets: ['es2015']\n        }\n      }\n    ]\n  }\n};"
         ) }
 
     File.open('karma.conf.js', 'w') { |file|

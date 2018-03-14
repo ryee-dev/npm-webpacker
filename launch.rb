@@ -26,10 +26,12 @@ class Project
     FileUtils.mkdir('dist')
     FileUtils.mkdir('src')
     FileUtils.touch('src/index.html')
+    FileUtils.touch('src/styles.css')
     FileUtils.touch('src/main.js')
     FileUtils.touch("src/#{@project_name}.js")
     FileUtils.touch('webpack.config.js')
     FileUtils.touch('.gitignore')
+    FileUtils.touch('.eslintrc')
 
     ### terminal commands
 
@@ -107,7 +109,11 @@ class Project
         #   loader: "eslint-loader"
           # }
 
-    # basic index template
+    File.open('.eslintrc', 'w') { |file|
+      file.write(
+        "{\n  'parserOptions': {\n    'ecmaVersion': 6,\n    'sourceType': 'module'\n  },\n  'extends': 'eslint:recommended',\n  'env': {\n    'browser': true,\n    'jquery': true\n  },\n  'rules': {\n    'semi': 1,\n    'indent': ['warn', 2],\n    'no-console': 'warn',\n    'no-debugger': 'warn'\n  }\n}"
+        ) }
+
     File.open('src/index.html', 'w') { |file|
       file.write(
         "<!DOCTYPE html>\n<html>\n  <head>\n    <title>#{@project_title}</title>\n  </head>\n  <body>\n    <h1>#{@project_title}</h1>\n  </body>\n</html>"
@@ -115,22 +121,17 @@ class Project
 
     File.open('src/main.js', 'w') { |file|
       file.write(
-        "import './styles.css';\nimport $ from 'jquery';\nimport 'bootstrap';\nimport 'bootstrap/dist/css/bootstrap.min.css';"
-        ) }
-
-    File.open('.gitignore', 'w') { |file|
-      file.write(
-        "node_modules/\n.DS_Store"
+        "import './styles.css';\nimport { **insert prototype name** } from './#{@project_name}';\nimport $ from 'jquery';\nimport 'bootstrap';\nimport 'bootstrap/dist/css/bootstrap.min.css';\n\n$(document).ready(function() {\n\n});"
         ) }
 
     File.open('webpack.config.js', 'w') { |file|
       file.write(
-        "const path = require('path');\nconst HtmlWebpackPlugin = require('html-webpack-plugin');\nconst CleanWebpackPlugin = require('clean-webpack-plugin');\nconst UglifyJsPlugin = require('uglifyjs-webpack-plugin');\n\nmodule.exports = {\n  entry: './src/main.js',\n  output: {\n    filename: 'bundle.js',\n    path: path.resolve(__dirname, 'dist')\n  },\n  devtool: 'eval-source-map',\n  devServer: {\n    contentBase: './dist'\n  },\n  plugins: [\n    new UglifyJsPlugin({ sourceMap: true }),\n    new CleanWebpackPlugin(['dist']),\n    new HtmlWebpackPlugin({\n      title: '#{@project_title}',\n      template: './src/index.html',\n      inject: 'body'\n    })\n  ],\n  module: {\n    rules: [\n      {\n        test: /\.js$/,\n        exclude:[\n          /node_modules/,\n          /spec/\n        ],\n        loader: 'eslint-loader'\n      }\n      {\n        test: /\.css$/,\n        use: [\n          'style-loader',\n          'css-loader'\n        ]\n      }\n    ]\n  }\n};"
+        "const path = require('path');\nconst HtmlWebpackPlugin = require('html-webpack-plugin');\nconst CleanWebpackPlugin = require('clean-webpack-plugin');\nconst UglifyJsPlugin = require('uglifyjs-webpack-plugin');\n\nmodule.exports = {\n  entry: './src/main.js',\n  output: {\n    filename: 'bundle.js',\n    path: path.resolve(__dirname, 'dist')\n  },\n  devtool: 'eval-source-map',\n  devServer: {\n    contentBase: './dist'\n  },\n  plugins: [\n    new UglifyJsPlugin({ sourceMap: true }),\n    new CleanWebpackPlugin(['dist']),\n    new HtmlWebpackPlugin({\n      title: '#{@project_title}',\n      template: './src/index.html',\n      inject: 'body'\n    })\n  ],\n  module: {\n    rules: [\n      {\n        test: /\.css$/,\n        use: [\n          'style-loader',\n          'css-loader'\n        ]\n      },\n      {        test: /\.js$/,\n        exclude:[\n          /node_modules/,\n          /spec/\n        ],\n        loader: 'eslint-loader'\n      }\n    ]\n  }\n};"
         ) }
 
     File.open('karma.conf.js', 'w') { |file|
       file.write(
-        "const webpackConfig = require('./webpack.config.js');\nmodule.exports = function(config) {\n  config.set({\n    basePath: '',\n    frameworks: ['jquery-3.2.1', 'jasmine'],\n    files: [\n      'src/*.js',\n      'spec/*spec.js'\n    ],\n    webpack: webpackConfig,\n    exclude: [\n  ],\n    preprocessors: {\n      'src/*.js': ['webpack'],\n      'spec/*spec.js': ['webpack']\n    },\n    plugins: [\n      'karma-jquery',\n      'karma-webpack',\n      'karma-jasmine',\n      'karma-chrome-launcher',\n      'karma-jasmine-html-reporter'\n    ],\n    reporters: [\n    'progress',\n    'kjhtml'],\n    port: 9876,\n    colors: true,\n    logLevel: config.LOG_INFO,\n    autoWatch: true,\n    browsers: ['Chrome'],\n    singleRun:: false,\n    concurrency: Infinity\n  })\n}"
+        "const webpackConfig = require('./webpack.config.js');\nmodule.exports = function(config) {\n  config.set({\n    basePath: '',\n    frameworks: ['jquery-3.2.1', 'jasmine'],\n    files: [\n      'src/*.js',\n      'spec/*spec.js'\n    ],\n    webpack: webpackConfig,\n    exclude: [\n    ],\n    preprocessors: {\n      'src/*.js': ['webpack'],\n      'spec/*spec.js': ['webpack']\n    },\n    plugins: [\n      'karma-jquery',\n      'karma-webpack',\n      'karma-jasmine',\n      'karma-chrome-launcher',\n      'karma-jasmine-html-reporter'\n    ],\n    reporters: ['progress', 'kjhtml'],\n    port: 9876,\n    colors: true,\n    logLevel: config.LOG_INFO,\n    autoWatch: true,\n    browsers: ['Chrome'],\n    singleRun:: false,\n    concurrency: Infinity\n  })\n}"
       )
     }
 

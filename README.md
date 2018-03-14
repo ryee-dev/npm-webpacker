@@ -22,15 +22,13 @@ These include:
 - dependency (linter): eslint
 - dependenct (linter): eslint loader
 
+### Jasmine
+
 - jasmine node module
 - jasmine helper package
 - initialize jasmine
 
-
-### YOU MUST MANUALLY UPDATE PACKAGE.JSON!
-   "scripts": {
-     "test": "jasmine"
-    }
+### Karma
 
 - karma test-runner
 - integrate jasmine and karma
@@ -39,24 +37,50 @@ These include:
 - karma webpack integration
 - karma jquery integration
 - karma testing reporter
-# initialize karma
+- initialize karma
 
-### MANUALLY UPDATE PACKAGE.JSON
+# MANUALLY UPDATE PACKAGE.JSON
+
+### replace
 ```
+...
   "scripts": {
     "test": "karma start karma.conf.js"
-    },
+  },
+...
 ```
-### MANUALLY UPDATE WEBPACK.CONFIG.JS
+### with
 ```
-{
-  test: /\.js$/,
-  exclude: [
-    /node_modules/,
-    /spec/
-    ],
-  loader: "eslint-loader"
-}
+...
+  "scripts": {
+    "build": "webpack --mode development",
+    "start": "webpack-dev-server --open --mode development",
+    "lint": "eslint src/*.js",
+    "test": "karma start karma.conf.js"
+  },
+...
+```
+
+## MANUALLY FIX WEBPACK.CONFIG.JS
+
+### find on line 28
+```
+    {
+      test: /.css$/,
+    }
+    {
+      test: /.js$/,
+    }
+```
+
+### correct syntax
+```
+    {
+      test: /\.css$/,
+    }
+    {
+      test: /\.js$/,
+    }
 ```
 
 

@@ -45,7 +45,7 @@ These include:
 ```
 ...
   "scripts": {
-    "test": "karma start karma.conf.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
 ...
 ```
@@ -60,29 +60,6 @@ These include:
   },
 ...
 ```
-
-## MANUALLY FIX WEBPACK.CONFIG.JS
-
-### find on line 28
-```
-    {
-      test: /.css$/,
-    }
-    {
-      test: /.js$/,
-    }
-```
-
-### correct syntax
-```
-    {
-      test: /\.css$/,
-    }
-    {
-      test: /\.js$/,
-    }
-```
-
 
 ## Instructions
 
@@ -100,6 +77,12 @@ $ ruby launch.rb
 ```
 
 ## Current Bugs
+
+#### v. 1.0.1
+- fixes webpack.config.js syntax errors (*credit to: @logmannn, thanks!*)
+- still unable to update script portion of .json
+
+#### v. 1.0.0
 - currently unable to update the script portion of package.json
 - does not fully update the webpack.config.js file
 - these must be manually updated.

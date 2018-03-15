@@ -113,7 +113,7 @@ class Project
 
     File.open('src/index.html', 'w') { |file|
       file.write(
-        "<!DOCTYPE html>\n<html>\n  <head>\n    <title>#{@project_title}</title>\n  </head>\n  <body>\n    <h1>#{@project_title}</h1>\n  </body>\n</html>"
+        "<!DOCTYPE html>\n<html>\n  <head>\n    <title>#{@project_title}</title>\n  </head>\n  <body>\n    <div class='container'>\n      <h1>#{@project_title}</h1>\n    </div>\n  </body>\n</html>"
         ) }
 
     File.open('src/main.js', 'w') { |file|

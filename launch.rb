@@ -48,6 +48,8 @@ class Project
       system 'npm install popper.js --save'
       # dependency: bootstrap
       system 'npm install bootstrap --save'
+      # dependency: images folder
+      system 'npm install url-loader file-loader --save-dev'
       # dependency: styles.css
       system 'npm install style-loader@0.20.2 css-loader@0.28.10 --save-dev'
       # dependency (plugin): webpack plugin
@@ -98,21 +100,6 @@ class Project
         # core
         system 'npm install babel-core@6.26.0 babel-loader@7.1.3 babel-preset-es2015@6.24.1 --save-dev'
 
-        # MANUALLY UPDATE PACKAGE.JSON
-          # "scripts": {
-          #   "test": "karma start karma.conf.js"
-          #   },
-
-        # MANUALLY UPDATE WEBPACK.CONFIG.JS
-          #{
-        #   test: /\.js$/,
-        #   exclude: [
-        #     /node_modules/,
-        #     /spec/
-        #   ],
-        #   loader: "eslint-loader"
-          # }
-
     File.open('.gitignore', 'w') { |file|
       file.write(
         "node_modules/\ndist/"
@@ -135,7 +122,7 @@ class Project
 
     File.open('webpack.config.js', 'w') { |file|
       file.write(
-        "const path = require('path');\nconst HtmlWebpackPlugin = require('html-webpack-plugin');\nconst CleanWebpackPlugin = require('clean-webpack-plugin');\nconst UglifyJsPlugin = require('uglifyjs-webpack-plugin');\n\nmodule.exports = {\n  entry: './src/main.js',\n  output: {\n    filename: 'bundle.js',\n    path: path.resolve(__dirname, 'dist')\n  },\n  devtool: 'eval-source-map',\n  devServer: {\n    contentBase: './dist'\n  },\n  plugins: [\n    new UglifyJsPlugin({ sourceMap: true }),\n    new CleanWebpackPlugin(['dist']),\n    new HtmlWebpackPlugin({\n      title: '#{@project_title}',\n      template: './src/index.html',\n      inject: 'body'\n    })\n  ],\n  module: {\n    rules: [\n      {\n        test: /\\.css$/,\n        use: [\n          'style-loader',\n          'css-loader'\n        ]\n      },\n      {        test: /\\.js$/,\n        exclude:[\n          /node_modules/,\n          /spec/\n        ],\n        loader: 'eslint-loader'\n      },\n      {\n        test: /\\.js$/,\n        exclude: [\n          /node_modules/,\n          /spec/\n        ],\n        loader:'babel-loader',\n        options: {\n          presets: ['es2015']\n        }\n      }\n    ]\n  }\n};"
+        "const path = require('path');\nconst HtmlWebpackPlugin = require('html-webpack-plugin');\nconst CleanWebpackPlugin = require('clean-webpack-plugin');\nconst UglifyJsPlugin = require('uglifyjs-webpack-plugin');\n\nmodule.exports = {\n  entry: './src/main.js',\n  output: {\n    filename: 'bundle.js',\n    path: path.resolve(__dirname, 'dist')\n  },\n  devtool: 'eval-source-map',\n  devServer: {\n    contentBase: './dist'\n  },\n  plugins: [\n    new UglifyJsPlugin({ sourceMap: true }),\n    new CleanWebpackPlugin(['dist']),\n    new HtmlWebpackPlugin({\n      title: '#{@project_title}',\n      template: './src/index.html',\n      inject: 'body'\n    })\n  ],\n  module: {\n    rules: [\n      {\n        test: /\\.css$/,\n        use: [\n          'style-loader',\n          'css-loader'\n        ]\n      },\n      {        test: /\\.js$/,\n        exclude:[\n          /node_modules/,\n          /spec/\n        ],\n        loader: 'eslint-loader'\n      },\n      {\n        test: /\\.js$/,\n        exclude: [\n          /node_modules/,\n          /spec/\n        ],\n        loader:'babel-loader',\n        options: {\n          presets: ['es2015']\n        }\n      }\n      {\n        test: /\\.(png|jp(e*)g|svg)$/,\n        use: [{\n          loader:'url-loader',\n          options: {\n            limit: 10000,\n            name: 'img/[hash]-[name].[ext]'\n          }\n        }]\n      }\n    ]\n  }\n};"
         ) }
 
     File.open('karma.conf.js', 'w') { |file|

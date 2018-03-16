@@ -3,36 +3,36 @@ Originally, I was hoping to be able to have this script be able to create and up
 
 For now, this script will install all the important and relevant plugins, scripts, and dependencies necessary so far.
 
-[X] creates package.json
-[X] dependency: installs most recent version of npm
-[X] dependency: webpack development dependency
-[X] dependency: allow webpack use from command line (CLI [X] command line interface)
-[X] dependency: allows images to be retrieved from the 'src/img' folder
-[X] dependency: jquery
-[X] dependency: popper
-[X] dependency: bootstrap
-[X] dependency: styles.css
-[X] dependency (plugin): webpack plugin
-[X] dependency (plugin): webpack declutterer
-[X] dependency (plugin): uglify
-[X] dependency (plugin): webpack development server
-[X] dependency (linter): eslint
-[X] dependenct (linter): eslint loader
+[x] creates package.json
+[x] dependency: installs most recent version of npm
+[x] dependency: webpack development dependency
+[x] dependency: allow webpack use from command line (CLI [x] command line interface)
+[x] dependency: allows images to be retrieved from the 'src/img' folder
+[x] dependency: jquery
+[x] dependency: popper
+[x] dependency: bootstrap
+[x] dependency: styles.css
+[x] dependency (plugin): webpack plugin
+[x] dependency (plugin): webpack declutterer
+[x] dependency (plugin): uglify
+[x] dependency (plugin): webpack development server
+[x] dependency (linter): eslint
+[x] dependenct (linter): eslint loader
 ### Jasmine
-[X] jasmine node module
-[X] jasmine helper package
-[X] initialize jasmine
+[x] jasmine node module
+[x] jasmine helper package
+[x] initialize jasmine
 ### Karma
-[X] karma test[X]runner
-[X] integrate jasmine and karma
-[X] specify chrome browser
-[X] karma cli
-[X] karma webpack integration
-[X] karma jquery integration
-[X] karma testing reporter
-[X] initialize karma
+[x] karma test[x]runner
+[x] integrate jasmine and karma
+[x] specify chrome browser
+[x] karma cli
+[x] karma webpack integration
+[x] karma jquery integration
+[x] karma testing reporter
+[x] initialize karma
 ### Babel
-[X] babel loader
+[x] babel loader
 
 # Instructions
 

@@ -115,26 +115,36 @@ class Project
         "node_modules/\n.DS_Store\ndist/"
         ) }
 
+# .eslintrc
+
     File.open('.eslintrc', 'w') { |file|
       file.write(
         "{\n  'parserOptions': {\n    'ecmaVersion': 6,\n    'sourceType': 'module'\n  },\n  'extends': 'eslint:recommended',\n  'env': {\n    'browser': true,\n    'jquery': true,\n    'node': true,\n    'jasmine': true\n  },\n  'rules': {\n    'semi': 1,\n    'indent': ['warn', 2],\n    'no-console': 'warn',\n    'no-debugger': 'warn',\n    'no-unused-vars': 'warn',\n    'no-mixed-spaces-and-tabs': 'warn'\n  }\n}"
         ) }
+
+# index.html
 
     File.open('src/index.html', 'w') { |file|
       file.write(
         "<!DOCTYPE html>\n<html>\n  <head>\n    <title>#{@project_title}</title>\n  </head>\n  <body>\n    <div class='container'>\n      <h1>#{@project_title}</h1>\n    </div>\n  </body>\n</html>"
         ) }
 
+# main.js
+
     File.open('src/main.js', 'w') { |file|
       file.write(
-        "import './styles.css';\nimport $ from 'jquery';\nimport 'bootstrap/dist/css/bootstrap.min.css';\n//import { **insert class name** } from './#{@project_name}.js';\n\n$(document).ready(function() {\n\n});"
+        "import './styles.css';\nimport $ from 'jquery';\nimport 'bootstrap/dist/css/bootstrap.min.css';\n//import { **insert prototype name** } from './#{@project_name}.js';\n\n$(document).ready(function() {\n\n});"
         ) }
+
+# webpack.config.js
 
     File.open('webpack.config.js', 'w') { |file|
       file.write(
         "const path = require('path');\nconst HtmlWebpackPlugin = require('html-webpack-plugin');\nconst CleanWebpackPlugin = require('clean-webpack-plugin');\nconst UglifyJsPlugin = require('uglifyjs-webpack-plugin');\nconst CopyWebpackPlugin = require('copy-webpack-plugin');\n\nmodule.exports = {\n  entry: './src/main.js',\n  output: {\n    filename: 'bundle.js',\n    path: path.resolve(__dirname, 'dist')\n  },\n  devtool: 'eval-source-map',\n  devServer: {\n    contentBase: './dist'\n  },\n  plugins: [\n    new CopyWebpackPlugin([\n      {from:'./src/img',to:'images'}\n    ]),\n    new UglifyJsPlugin({ sourceMap: true }),\n    new CleanWebpackPlugin(['dist']),\n    new HtmlWebpackPlugin({\n      title: '#{@project_title}',\n      template: './src/index.html',\n      inject: 'body'\n    })\n  ],\n  module: {\n    rules: [\n      {\n        test: /\\.css$/,\n        use: [\n          'style-loader',\n          'css-loader'\n        ]\n      },\n      {\n        test: /\\.(gif|png|jpe?g|svg)$/i, // image code\n        use: [\n          'file-loader',\n          {\n            loader: 'image-webpack-loader', // image code\n            options: {\n              bypassOnDebug: true,\n            },\n          },\n        ],\n      },\n      {\n        test: /\\.js$/,\n        exclude:[\n          /node_modules/,\n          /spec/\n        ],\n        loader: 'eslint-loader'\n      },\n      {\n        test: /\\.js$/,\n        exclude: [\n          /node_modules/,\n          /spec/\n        ],\n        loader:'babel-loader',\n        options: {\n          presets: ['es2015']\n        }\n      }\n    ]\n  }\n};"
       )
     }
+
+# karma.conf.js
 
     File.open('karma.conf.js', 'w') { |file|
       file.write(

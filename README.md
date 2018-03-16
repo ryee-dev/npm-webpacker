@@ -4,13 +4,13 @@ This script will create all necessary initial files and folders & will install a
 
 # Instructions
 
-1. **Clone**
+## 1. **Clone**
 ```
 $ cd desktop
 $ git clone https://github.com/ryee926/npm-webpacker
 ```
 
-2. **Run Script**
+## 2. **Run Script**
 ```
 $ cd npm-webpacker
 $ ruby launch.rb
@@ -19,12 +19,11 @@ $ ruby launch.rb
 ### **IMPORTANT**
 *after successfully installing*
 
-3. **UPDATE PACKAGE.JSON**
 ```
 $ cd (your project folder)
 $ atom .
 ```
-
+## 3. **UPDATE PACKAGE.JSON**
 #### *(ctrl-f) || (⌘-f)*
 ```
 "main": "webpack.config.js",
@@ -43,12 +42,12 @@ $ atom .
 },
 ```
 
-4. **PREP FOR BUILD/START**
+## 4. **PREP FOR BUILD/START**
 ```
 $ npm install
 ```
 
-5. **SUCCESS**
+## 5. **SUCCESS**
 ```
 $ npm run build
 ```

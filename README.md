@@ -52,20 +52,20 @@ $ ruby launch.rb
 3. **UPDATE PACKAGE.JSON**
 #### *(ctrl-f)*
 ```
-  "main": "webpack.config.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+"main": "webpack.config.js",
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1"
+},
 ```
 #### *replace with*
 ```
-  "main": "index.js",
-  "scripts": {
-    "build": "webpack --mode development",
-    "start": "webpack-dev-server --open --mode development",
-    "lint": "eslint src/*.js",
-    "test": "karma start karma.conf.js",
-  },
+"main": "index.js",
+"scripts": {
+  "build": "webpack --mode development",
+  "start": "webpack --mode development; webpack-dev-server --open --mode development",
+  "lint": "eslint --fix src/*.js",
+  "test": "karma start karma.conf.js --mode development"
+},
 ```
 
 4. **PREP FOR BUILD/START**

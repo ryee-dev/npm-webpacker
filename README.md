@@ -88,6 +88,10 @@ $ npm run start
 
 ## Changelog
 
+#### v.1.1.0
+* Working version
+* (to be added)
+
 #### v.1.0.6
 * Adds a spec template within the spec folder created through
 ```

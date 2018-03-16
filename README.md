@@ -16,7 +16,7 @@ $ cd npm-webpacker
 $ ruby launch.rb
 ```
 
-### IMPORTANT
+### **IMPORTANT**
 *after successfully installing*
 
 3. **UPDATE PACKAGE.JSON**

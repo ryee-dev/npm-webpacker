@@ -68,19 +68,6 @@ These include:
 ...
 ```
 
-## RECOMMENDED (optional)
-
-To make your dependency installation process error-free, change the following:
-
-```
-...
-  "name": "example-project",
-  "version": "1.0.0",
-  "description": "",
-...
-```
-
-
 ## Instructions
 
 **Clone**

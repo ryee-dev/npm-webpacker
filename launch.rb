@@ -100,6 +100,16 @@ class Project
         # core
         system 'npm install babel-core@6.26.0 babel-loader@7.1.3 babel-preset-es2015@6.24.1 --save-dev'
 
+    # add spec file to newly created spec folder
+    FileUtils.touch("spec/#{@project_name}-spec.js")
+
+    # populate spec file with basic template
+    File.open("spec/#{@project_name}-spec.js", 'w') { |file|
+      file.write(
+        "// import { Constructor } from './../src/#{@project_name}.js'\n\ndescribe('', function() {\n\n  it('', function() {\n    // var example = new Constructor(parameters)\n    // expect(example.method()).toEqual('');\n  });\n});"
+      )
+    }
+
     File.open('.gitignore', 'w') { |file|
       file.write(
         "node_modules/\n.DS_Store\ndist/"
@@ -107,7 +117,7 @@ class Project
 
     File.open('.eslintrc', 'w') { |file|
       file.write(
-        "{\n  'parserOptions': {\n    'ecmaVersion': 6,\n    'sourceType': 'module'\n  },\n  'extends': 'eslint:recommended',\n  'env': {\n    'browser': true,\n    'jquery': true,\n    'node': true\n  },\n  'rules': {\n    'semi': 1,\n    'indent': ['warn', 2],\n    'no-console': 'warn',\n    'no-debugger': 'warn',\n    'no-unused-vars': 'warn'\n  }\n}"
+        "{\n  'parserOptions': {\n    'ecmaVersion': 6,\n    'sourceType': 'module'\n  },\n  'extends': 'eslint:recommended',\n  'env': {\n    'browser': true,\n    'jquery': true,\n    'node': true\n    'jasmine': true\n  },\n  'rules': {\n    'semi': 1,\n    'indent': ['warn', 2],\n    'no-console': 'warn',\n    'no-debugger': 'warn',\n    'no-unused-vars': 'warn'\n  }\n}"
         ) }
 
     File.open('src/index.html', 'w') { |file|

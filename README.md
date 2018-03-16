@@ -88,6 +88,12 @@ $ npm test
 
 ## Changelog
 
+#### v.1.0.6
+* Adds a spec template within the spec folder created through
+```
+$ karma init
+```
+
 #### v.1.0.5
 * ELI5-level README
 

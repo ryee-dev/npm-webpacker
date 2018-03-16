@@ -52,10 +52,6 @@ $ npm run build
 ```
 $ npm run start
 ```
-  *or*
-```
-$ npm test
-```
 
 #### Included dependencies
 

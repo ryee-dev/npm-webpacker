@@ -1,37 +1,6 @@
 # npm-webpack installer
 
-This script will create all necessary initial files and folders & will install all the important and relevant plugins, scripts, and dependencies necessary so far.
-
-- [x] creates package.json
-- [x] dependency: installs most recent version of npm
-- [x] dependency: webpack development dependency
-- [x] dependency: allow webpack use from command line (CLI - command line interface)
-- [x] dependency: allows images to be retrieved from the 'src/img' folder
-- [x] dependency: jquery
-- [x] dependency: popper
-- [x] dependency: bootstrap
-- [x] dependency: styles.css
-- [x] dependency (plugin): webpack plugin
-- [x] dependency (plugin): webpack declutterer
-- [x] dependency (plugin): uglify
-- [x] dependency (plugin): webpack development server
-- [x] dependency (linter): eslint
-- [x] dependenct (linter): eslint loader
-* Jasmine
-- [x] jasmine node module
-- [x] jasmine helper package
-- [x] initialize jasmine
-* Karma
-- [x] karma test-runner
-- [x] integrate jasmine and karma
-- [x] specify chrome browser
-- [x] karma cli
-- [x] karma webpack integration
-- [x] karma jquery integration
-- [x] karma testing reporter
-- [x] initialize karma
-* Babel
-- [x] babel loader
+This script will create all necessary initial files and folders & will install all the important and relevant plugins, scripts, and dependencies necessary.
 
 # Instructions
 
@@ -49,6 +18,7 @@ $ ruby launch.rb
 
 *after successfully installing*
 
+## IMPORTANT
 3. **UPDATE PACKAGE.JSON**
 #### *(ctrl-f)*
 ```
@@ -85,6 +55,38 @@ $ npm run start
 ```
 $ npm test
 ```
+
+
+- [x] creates package.json
+- [x] dependency: installs most recent version of npm
+- [x] dependency: webpack development dependency
+- [x] dependency: allow webpack use from command line (CLI - command line interface)
+- [x] dependency: allows images to be retrieved from the 'src/img' folder
+- [x] dependency: jquery
+- [x] dependency: popper
+- [x] dependency: bootstrap
+- [x] dependency: styles.css
+- [x] dependency (plugin): webpack plugin
+- [x] dependency (plugin): webpack declutterer
+- [x] dependency (plugin): uglify
+- [x] dependency (plugin): webpack development server
+- [x] dependency (linter): eslint
+- [x] dependenct (linter): eslint loader
+* Jasmine
+- [x] jasmine node module
+- [x] jasmine helper package
+- [x] initialize jasmine
+* Karma
+- [x] karma test-runner
+- [x] integrate jasmine and karma
+- [x] specify chrome browser
+- [x] karma cli
+- [x] karma webpack integration
+- [x] karma jquery integration
+- [x] karma testing reporter
+- [x] initialize karma
+* Babel
+- [x] babel loader
 
 ## Changelog
 

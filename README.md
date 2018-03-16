@@ -20,6 +20,8 @@ $ ruby launch.rb
 *after successfully installing*
 
 3. **UPDATE PACKAGE.JSON**
+#### $ cd (your project folder)
+#### $ atom .
 #### *(ctrl-f)*
 ```
 "main": "webpack.config.js",

@@ -46,7 +46,7 @@ $ git clone https://github.com/ryee926/npm-webpacker
 $ npm-webpacker/ruby launch.rb
 ```
 
-*## complete dependency installation ##*
+*after successfully installing*
 
 3. **UPDATE PACKAGE.JSON**
 #### *(ctrl-f)*

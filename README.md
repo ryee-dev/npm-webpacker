@@ -1,7 +1,6 @@
 # npm-webpack installer
-Originally, I was hoping to be able to have this script be able to create and update all necessary files and folders, but ran into a few roadblocks.
 
-For now, this script will install all the important and relevant plugins, scripts, and dependencies necessary so far.
+This script will create all necessary initial files and folders & will install all the important and relevant plugins, scripts, and dependencies necessary so far.
 
 - [x] creates package.json
 - [x] dependency: installs most recent version of npm

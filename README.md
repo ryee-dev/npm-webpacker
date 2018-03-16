@@ -17,11 +17,11 @@ This script will create all necessary initial files and folders & will install a
 - [x] dependency (plugin): webpack development server
 - [x] dependency (linter): eslint
 - [x] dependenct (linter): eslint loader
-### Jasmine
+* Jasmine
 - [x] jasmine node module
 - [x] jasmine helper package
 - [x] initialize jasmine
-### Karma
+* Karma
 - [x] karma test-runner
 - [x] integrate jasmine and karma
 - [x] specify chrome browser
@@ -30,7 +30,7 @@ This script will create all necessary initial files and folders & will install a
 - [x] karma jquery integration
 - [x] karma testing reporter
 - [x] initialize karma
-### Babel
+* Babel
 - [x] babel loader
 
 # Instructions

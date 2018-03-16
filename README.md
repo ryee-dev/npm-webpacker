@@ -46,6 +46,8 @@ These include:
 
 # MANUALLY UPDATE PACKAGE.JSON
 
+## MANDATORY
+
 ### replace
 ```
 ...
@@ -62,10 +64,22 @@ These include:
     "start": "webpack-dev-server --open --mode development",
     "lint": "eslint src/*.js",
     "test": "karma start karma.conf.js",
-    "test": "jasmine"
   },
 ...
 ```
+
+## RECOMMENDED (optional)
+
+To make your dependency installation process error-free, change the following:
+
+```
+...
+  "name": "example-project",
+  "version": "1.0.0",
+  "description": "",
+...
+```
+
 
 ## Instructions
 

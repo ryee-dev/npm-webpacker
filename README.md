@@ -21,11 +21,11 @@ $ ruby launch.rb
 
 3. **UPDATE PACKAGE.JSON**
 ```
-#### $ cd (your project folder)
-#### $ atom .
+$ cd (your project folder)
+$ atom .
 ```
 
-#### *(ctrl-f)*
+#### *(ctrl-f) || (⌘-f)*
 ```
 "main": "webpack.config.js",
 "scripts": {

@@ -39,12 +39,12 @@ $ atom .
 },
 ```
 
-## 4. **PREP FOR BUILD/START**
+## 4. **Prep for Run**
 ```
 $ npm install
 ```
 
-## 5. **SUCCESS**
+## 5. **Run**
 ```
 $ npm run build
 ```
@@ -57,6 +57,7 @@ $ npm run start
 $ npm test
 ```
 
+#### Included dependencies
 
 - [x] creates package.json
 - [x] dependency: installs most recent version of npm

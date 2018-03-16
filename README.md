@@ -1,6 +1,6 @@
-# npm-webpack installer
+# npm-webpacker
 
-This script will create all necessary initial files and folders & will install all the important and relevant plugins, scripts, and dependencies necessary.
+This script creates all necessary initial files and folders & installs all relevant plugins, scripts, and dependencies necessary (so far).
 
 # Instructions
 

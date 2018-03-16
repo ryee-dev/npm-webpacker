@@ -11,6 +11,7 @@ These include:
 - create package.json
 - dependency: webpack development dependency
 - dependency: allow webpack use from command line (CLI - command line interface)
+- dependency: allows images to be retrieved from the 'src/img' folder
 - dependency: jquery
 - dependency: popper
 - dependency: bootstrap
@@ -60,7 +61,8 @@ These include:
     "build": "webpack --mode development",
     "start": "webpack-dev-server --open --mode development",
     "lint": "eslint src/*.js",
-    "test": "karma start karma.conf.js"
+    "test": "karma start karma.conf.js",
+    "test": "jasmine"
   },
 ...
 ```
@@ -81,6 +83,10 @@ $ ruby launch.rb
 ```
 
 ## Changelog
+
+#### v.1.0.4
+- adds plugin to enable access to 'src/img' folder (*credit to: @wh0pper, great find :D*)
+- some refactoring
 
 #### v. 1.0.1
 - fixes webpack.config.js syntax errors (*credit to: @logmannn, thanks!*)

@@ -43,6 +43,8 @@ class Project
       system 'npm install webpack@4.0.1 --save-dev'
       # dependency: allow webpack use from command line (CLI - command line interface)
       system 'npm install webpack-cli@2.0.9 --save-dev'
+      # dependency: allows images to be retrieved from the img folder
+      system 'npm install --save-dev copy-webpack-plugin'
       # dependency: jquery
       system 'npm install jquery --save'
       # dependency: popper
@@ -74,11 +76,6 @@ class Project
         # initialize jasmine
         system './node_modules/.bin/jasmine init'
 
-        ## MUST MANUALLY UPDATE PACKAGE.JSON!
-          # "scripts": {
-          #   "test": "jasmine"
-          # }
-
       ## karma installation
         # karma test-runner
         system 'npm install karma@2.0.0 --save-dev'
@@ -103,12 +100,12 @@ class Project
 
     File.open('.gitignore', 'w') { |file|
       file.write(
-        "node_modules/\ndist/"
+        "node_modules/\n.DS_Store\ndist/"
         ) }
 
     File.open('.eslintrc', 'w') { |file|
       file.write(
-        "{\n  'parserOptions': {\n    'ecmaVersion': 6,\n    'sourceType': 'module'\n  },\n  'extends': 'eslint:recommended',\n  'env': {\n    'browser': true,\n    'jquery': true,\n    'node': true\n  },\n  'rules': {\n    'semi': 1,\n    'indent': ['warn', 2],\n    'no-console': 'warn',\n    'no-debugger': 'warn'\n  }\n}"
+        "{\n  'parserOptions': {\n    'ecmaVersion': 6,\n    'sourceType': 'module'\n  },\n  'extends': 'eslint:recommended',\n  'env': {\n    'browser': true,\n    'jquery': true,\n    'node': true\n  },\n  'rules': {\n    'semi': 1,\n    'indent': ['warn', 2],\n    'no-console': 'warn',\n    'no-debugger': 'warn',\n    'no-unused-vars': 'warn'\n  }\n}"
         ) }
 
     File.open('src/index.html', 'w') { |file|
@@ -118,12 +115,12 @@ class Project
 
     File.open('src/main.js', 'w') { |file|
       file.write(
-        "import './styles.css';\n//import { **insert prototype name** } from './#{@project_name}';\nimport $ from 'jquery';\nimport 'bootstrap';\nimport 'bootstrap/dist/css/bootstrap.min.css';\n\n$(document).ready(function() {\n\n});"
+        "import './styles.css';\nimport $ from 'jquery';\nimport 'bootstrap/dist/css/bootstrap.min.css';\n//import { **insert class name** } from './#{@project_name}.js';\n\n$(document).ready(function() {\n\n});"
         ) }
 
     File.open('webpack.config.js', 'w') { |file|
       file.write(
-        "const path = require('path');\nconst HtmlWebpackPlugin = require('html-webpack-plugin');\nconst CleanWebpackPlugin = require('clean-webpack-plugin');\nconst UglifyJsPlugin = require('uglifyjs-webpack-plugin');\n\nmodule.exports = {\n  entry: './src/main.js',\n  output: {\n    filename: 'bundle.js',\n    path: path.resolve(__dirname, 'dist')\n  },\n  devtool: 'eval-source-map',\n  devServer: {\n    contentBase: './dist'\n  },\n  plugins: [\n    new UglifyJsPlugin({ sourceMap: true }),\n    new CleanWebpackPlugin(['dist']),\n    new HtmlWebpackPlugin({\n      title: '#{@project_title}',\n      template: './src/index.html',\n      inject: 'body'\n    })\n  ],\n  module: {\n    rules: [\n      {\n        test: /\\.css$/,\n        use: [\n          'style-loader',\n          'css-loader'\n        ]\n      },\n      {\n        test: /\\.js$/,\n        exclude:[\n          /node_modules/,\n          /spec/\n        ],\n        loader: 'eslint-loader'\n      },\n      {\n        test: /\\.js$/,\n        exclude: [\n          /node_modules/,\n          /spec/\n        ],\n        loader:'babel-loader',\n        options: {\n          presets: ['es2015']\n        }\n      },\n      {\n        test: /\\.(png|jp(e*)g|svg)$/,\n        use: [{\n          loader:'url-loader',\n          options: {\n            limit: 10000,\n            name: 'img/[hash]-[name].[ext]'\n          }\n        }]\n      }\n    ]\n  }\n};"
+        "const path = require('path');\nconst HtmlWebpackPlugin = require('html-webpack-plugin');\nconst CleanWebpackPlugin = require('clean-webpack-plugin');\nconst UglifyJsPlugin = require('uglifyjs-webpack-plugin');\n\nmodule.exports = {\n  entry: './src/main.js',\n  output: {\n    filename: 'bundle.js',\n    path: path.resolve(__dirname, 'dist')\n  },\n  devtool: 'eval-source-map',\n  devServer: {\n    contentBase: './dist'\n  },\n  plugins: [\n    new CopyWebpackPlugin([\n      {from:'src/img',to:'images'}\n    ]),\n    new UglifyJsPlugin({ sourceMap: true }),\n    new CleanWebpackPlugin(['dist']),\n    new HtmlWebpackPlugin({\n      title: '#{@project_title}',\n      template: './src/index.html',\n      inject: 'body'\n    })\n  ],\n  module: {\n    rules: [\n      {\n        test: /\\.css$/,\n        use: [\n          'style-loader',\n          'css-loader'\n        ]\n      },\n      {\n        test: /\\.js$/,\n        exclude:[\n          /node_modules/,\n          /spec/\n        ],\n        loader: 'eslint-loader'\n      },\n      {\n        test: /\\.js$/,\n        exclude: [\n          /node_modules/,\n          /spec/\n        ],\n        loader:'babel-loader',\n        options: {\n          presets: ['es2015']\n        }\n      }\n    ]\n  }\n};"
         ) }
 
     File.open('karma.conf.js', 'w') { |file|
@@ -131,8 +128,6 @@ class Project
         "const webpackConfig = require('./webpack.config.js');\nmodule.exports = function(config) {\n  config.set({\n    basePath: '',\n    frameworks: ['jquery-3.2.1', 'jasmine'],\n    files: [\n      'src/*.js',\n      'spec/*spec.js'\n    ],\n    webpack: webpackConfig,\n    exclude: [\n    ],\n    preprocessors: {\n      'src/*.js': ['webpack'],\n      'spec/*spec.js': ['webpack']\n    },\n    plugins: [\n      'karma-jquery',\n      'karma-webpack',\n      'karma-jasmine',\n      'karma-chrome-launcher',\n      'karma-jasmine-html-reporter'\n    ],\n    reporters: ['progress', 'kjhtml'],\n    port: 9876,\n    colors: true,\n    logLevel: config.LOG_INFO,\n    autoWatch: true,\n    browsers: ['Chrome'],\n    singleRun: false,\n    concurrency: Infinity\n  })\n}"
       )
     }
-
-    # File.open(filename = "package.json", "r+") { |file| file << File.read(filename).gsub(/'test': 'echo \'Error: no test specified\' && exit 1'/, "'build': 'webpack --mode development',\n    'start': 'npm run build; webpack-dev-server --open'") }
 
     else
       puts 'Closing Script...'

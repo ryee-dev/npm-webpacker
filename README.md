@@ -37,13 +37,14 @@ This script will create all necessary initial files and folders & will install a
 
 1. **Clone**
 ```
-$ cd Desktop
+$ cd desktop
 $ git clone https://github.com/ryee926/npm-webpacker
 ```
 
 2. **Run Script**
 ```
-$ npm-webpacker/ruby launch.rb
+$ cd npm-webpacker
+$ ruby launch.rb
 ```
 
 *after successfully installing*
@@ -76,11 +77,11 @@ $ npm install
 ```
 $ npm run build
 ```
-*or*
+  *or*
 ```
 $ npm run start
 ```
-*or*
+  *or*
 ```
 $ npm test
 ```

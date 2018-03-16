@@ -16,7 +16,7 @@ $ cd npm-webpacker
 $ ruby launch.rb
 ```
 
-## 3. *IMPORTANT* | **Update package.json**
+## 3. *IMPORTANT* | **Update package.json** | *IMPORTANT*
 ```
 $ cd (your project folder)
 $ atom .

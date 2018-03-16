@@ -16,14 +16,11 @@ $ cd npm-webpacker
 $ ruby launch.rb
 ```
 
-### **IMPORTANT**
-*after successfully installing*
-
+## 3. **!IMPORTANT!** **UPDATE PACKAGE.JSON** **!IMPORTANT!**
 ```
 $ cd (your project folder)
 $ atom .
 ```
-## 3. **UPDATE PACKAGE.JSON**
 #### *(ctrl-f) || (⌘-f)*
 ```
 "main": "webpack.config.js",

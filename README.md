@@ -51,6 +51,7 @@ These include:
 ### replace
 ```
 ...
+  "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -59,6 +60,7 @@ These include:
 ### with
 ```
 ...
+  "main": "index.js",
   "scripts": {
     "build": "webpack --mode development",
     "start": "webpack-dev-server --open --mode development",

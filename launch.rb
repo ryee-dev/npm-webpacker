@@ -40,9 +40,9 @@ class Project
       # create package.json
       system 'npm init -y'
       # dependency: webpack development dependency
-      system 'npm install webpack@4.0.1 --save-dev'
+      system 'npm install webpack@4.1.1 --save-dev'
       # dependency: allow webpack use from command line (CLI - command line interface)
-      system 'npm install webpack-cli@2.0.9 --save-dev'
+      system 'npm install webpack-cli@2.0.12 --save-dev'
       # dependency: allows images to be retrieved from the img folder
       system 'npm install --save-dev copy-webpack-plugin'
       # dependency: jquery
@@ -51,18 +51,16 @@ class Project
       system 'npm install popper.js --save'
       # dependency: bootstrap
       system 'npm install bootstrap --save'
-      # dependency: images folder
-      system 'npm install url-loader file-loader --save-dev'
       # dependency: styles.css
-      system 'npm install style-loader@0.20.2 css-loader@0.28.10 --save-dev'
+      system 'npm install style-loader@0.20.3 css-loader@0.28.10 --save-dev'
       # dependency (plugin): webpack plugin
       system 'npm install html-webpack-plugin@3.0.6 --save-dev'
       # dependency (plugin): webpack declutterer
-      system 'npm install clean-webpack-plugin@0.1.18 --save-dev'
+      system 'npm install clean-webpack-plugin@0.1.19 --save-dev'
       # dependency (plugin): uglify
-      system 'npm install uglifyjs-webpack-plugin@1.2.2 --save-dev'
+      system 'npm install uglifyjs-webpack-plugin@1.2.3 --save-dev'
       # dependency (plugin): webpack development server
-      system 'npm install webpack-dev-server@3.1.0 --save-dev'
+      system 'npm install webpack-dev-server@3.1.1 --save-dev'
       # dependency (linter): eslint
       system 'npm install eslint@4.18.2 --save-dev'
       # dependency (linter): eslint loader
@@ -95,8 +93,7 @@ class Project
         system 'karma init'
 
       ## babel installation
-        # core
-        system 'npm install babel-core@6.26.0 babel-loader@7.1.3 babel-preset-es2015@6.24.1 --save-dev'
+      system "'npm install 'babel-loader@^8.0.0-beta' @babel/core @babel/preset-env webpack'"
 
     File.open('.gitignore', 'w') { |file|
       file.write(

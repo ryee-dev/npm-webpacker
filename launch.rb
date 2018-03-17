@@ -37,38 +37,47 @@ class Project
     ### terminal commands
 
     if @install_all
-      # create package.json
-      system 'npm init -y'
-      # dependency: installs most recent version of npm
-      system 'npm install npm@latest -g'
-      # dependency: webpack development dependency
-      system 'npm install webpack@4.0.1 --save-dev'
-      # dependency: allow webpack use from command line (CLI - command line interface)
-      system 'npm install webpack-cli@2.0.9 --save-dev'
-      # dependency: allows images to be retrieved from the img folder
-      system 'npm install --save-dev copy-webpack-plugin'
-      # dependency: jquery
-      system 'npm install jquery --save'
-      # dependency: popper
-      system 'npm install popper.js --save'
-      # dependency: bootstrap
-      system 'npm install bootstrap --save'
-      # dependency: images folder
-      system 'npm install url-loader file-loader --save-dev'
-      # dependency: styles.css
-      system 'npm install style-loader@0.20.2 css-loader@0.28.10 --save-dev'
-      # dependency (plugin): webpack plugin
-      system 'npm install html-webpack-plugin@3.0.6 --save-dev'
-      # dependency (plugin): webpack declutterer
-      system 'npm install clean-webpack-plugin@0.1.18 --save-dev'
-      # dependency (plugin): uglify
-      system 'npm install uglifyjs-webpack-plugin@1.2.2 --save-dev'
-      # dependency (plugin): webpack development server
-      system 'npm install webpack-dev-server@3.1.0 --save-dev'
-      # dependency (linter): eslint
-      system 'npm install eslint@4.18.2 --save-dev'
-      # dependency (linter): eslint loader
-      system 'npm install eslint-loader@2.0.0 --save-dev'
+
+      # npm essentials
+        # create package.json
+          system 'npm init -y'
+        # dependency: installs most recent version of npm
+          system 'npm install npm@latest -g'
+        # dependency: webpack development dependency
+          system 'npm install webpack@4.0.1 --save-dev'
+        # dependency: allow webpack use from command line (CLI - command line interface)
+          system 'npm install webpack-cli@2.0.9 --save-dev'
+        # dependency: allows images to be retrieved from the img folder
+          system 'npm install --save-dev copy-webpack-plugin'
+      # JS libraries
+        # dependency: jquery.js
+          system 'npm install jquery --save'
+        # dependency: popper.js
+          system 'npm install popper.js --save'
+        # dependency: tailwind
+          system 'npm install tailwindcss --save-dev'
+          system 'tailwind init'
+      # CSS libraries
+        # dependency: bootstrap.css
+          system 'npm install bootstrap --save'
+        # dependency: animate.css
+          system 'npm install animate.css --save'
+        # dependency: images folder
+          system 'npm install url-loader file-loader --save-dev'
+        # dependency: styles.css
+          system 'npm install style-loader@0.20.2 css-loader@0.28.10 --save-dev'
+        # dependency (plugin): webpack plugin
+          system 'npm install html-webpack-plugin@3.0.6 --save-dev'
+        # dependency (plugin): webpack declutterer
+          system 'npm install clean-webpack-plugin@0.1.18 --save-dev'
+        # dependency (plugin): uglify
+          system 'npm install uglifyjs-webpack-plugin@1.2.2 --save-dev'
+        # dependency (plugin): webpack development server
+          system 'npm install webpack-dev-server@3.1.0 --save-dev'
+        # dependency (linter): eslint
+          system 'npm install eslint@4.18.2 --save-dev'
+        # dependency (linter): eslint loader
+          system 'npm install eslint-loader@2.0.0 --save-dev'
 
       ## jasmine installation
         # jasmine node module
@@ -99,6 +108,7 @@ class Project
       ## babel installation
         # core
         system 'npm install babel-core@6.26.0 babel-loader@7.1.3 babel-preset-es2015@6.24.1 --save-dev'
+
 
     # add spec file to newly created spec folder
     FileUtils.touch("spec/#{@project_name}-spec.js")

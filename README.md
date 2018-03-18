@@ -104,7 +104,7 @@ $ karma init
 * ELI5-level README
 
 #### v.1.0.4
-* adds plugin to enable access to 'src/img' folder (*credit to: @wh0pper, great find :D*)
+* adds plugin to enable access to 'src/img' folder (*credit to: @GreenBeetle, great find :D*)
 * some refactoring
 
 #### v. 1.0.1

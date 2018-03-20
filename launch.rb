@@ -113,6 +113,7 @@ class Project
         # core
         system 'npm install babel-core@6.26.0 babel-loader@7.1.3 babel-preset-es2015@6.24.1 --save-dev'
 
+
     # add spec file to newly created spec folder
     FileUtils.touch("spec/#{@project_name}-spec.js")
 

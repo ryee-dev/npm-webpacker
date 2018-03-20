@@ -145,7 +145,7 @@ class Project
 
 # index.html
 
-    File.open('src/styles.css', 'w') { |file|
+    File.open('src/css/styles.css', 'w') { |file|
       file.write(
         "h1.title {\n  text-align: center;\n}"
         ) }
@@ -154,7 +154,7 @@ class Project
 
     File.open('src/main.js', 'w') { |file|
       file.write(
-        "import './styles.css';\nimport $ from 'bootstrap';\nimport $ from 'jquery';\nimport $ from 'popper';\nimport $ from 'materialize-css'\nimport $ from 'bulma';\n//import { **insert prototype name** } from './#{@project_name}.js';\n\n$(document).ready(function() {\n\n});"
+        "import '.css/styles.css';\nimport $ from 'bootstrap';\nimport $ from 'jquery';\nimport $ from 'popper';\nimport $ from 'materialize-css'\nimport $ from 'bulma';\n//import { **insert prototype name** } from './#{@project_name}.js';\n\n$(document).ready(function() {\n\n});"
         ) }
 
 # webpack.config.js

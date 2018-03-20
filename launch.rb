@@ -26,10 +26,12 @@ class Project
     FileUtils.mkdir('dist')
     FileUtils.mkdir('src')
     FileUtils.mkdir('src/img')
+    FileUtils.mkdir('src/css')
+    FileUtils.mkdir('src/js')
     FileUtils.touch('src/index.html')
-    FileUtils.touch('src/styles.css')
+    FileUtils.touch('src/css/styles.css')
     FileUtils.touch('src/main.js')
-    FileUtils.touch("src/#{@project_name}.js")
+    FileUtils.touch("src/js/#{@project_name}.js")
     FileUtils.touch('webpack.config.js')
     FileUtils.touch('.gitignore')
     FileUtils.touch('.eslintrc')
@@ -43,34 +45,45 @@ class Project
       system 'npm install npm@latest -g'
       # dependency: webpack development dependency
       system 'npm install webpack@4.0.1 --save-dev'
-      # dependency: allow webpack use from command line (CLI - command line interface)
-      system 'npm install webpack-cli@2.0.9 --save-dev'
-      # dependency: allows images to be retrieved from the img folder
-      system 'npm install --save-dev copy-webpack-plugin'
-      # dependency: jquery
-      system 'npm install jquery --save'
-      # dependency: popper
-      system 'npm install popper.js --save'
-      # dependency: bootstrap
-      system 'npm install bootstrap --save'
-      # dependency: images folder
-      system 'npm install url-loader file-loader --save-dev'
-      # dependency: styles.css
-      system 'npm install style-loader@0.20.2 css-loader@0.28.10 --save-dev'
-      # dependency (plugin): webpack plugin
-      system 'npm install html-webpack-plugin@3.0.6 --save-dev'
-      # dependency (plugin): webpack declutterer
-      system 'npm install clean-webpack-plugin@0.1.18 --save-dev'
-      # dependency (plugin): uglify
-      system 'npm install uglifyjs-webpack-plugin@1.2.2 --save-dev'
-      # dependency (plugin): webpack development server
-      system 'npm install webpack-dev-server@3.1.0 --save-dev'
-      # dependency (linter): eslint
-      system 'npm install eslint@4.18.2 --save-dev'
-      # dependency (linter): eslint loader
-      system 'npm install eslint-loader@2.0.0 --save-dev'
 
-      ## jasmine installation
+      # Webpack Essentials
+
+        # dependency (plugin): webpack plugin
+        system 'npm install html-webpack-plugin@3.0.6 --save-dev'
+        # dependency (plugin): webpack declutterer
+        system 'npm install clean-webpack-plugin@0.1.18 --save-dev'
+        # dependency (plugin): uglify
+        system 'npm install uglifyjs-webpack-plugin@1.2.2 --save-dev'
+        # dependency (plugin): webpack development server
+        system 'npm install webpack-dev-server@3.1.0 --save-dev'
+        # dependency (linter): eslint
+        system 'npm install eslint@4.18.2 --save-dev'
+        # dependency (linter): eslint loader
+        system 'npm install eslint-loader@2.0.0 --save-dev'
+        # dependency: allow webpack use from command line (CLI - command line interface)
+        system 'npm install webpack-cli@2.0.9 --save-dev'
+
+
+      # Project Tools
+
+        # dependency: allows images to be retrieved from the img folder
+        system 'npm install --save-dev copy-webpack-plugin'
+        # dependency: images folder
+        system 'npm install url-loader file-loader --save-dev'
+        # dependency|js lib: jquery
+        system 'npm install jquery --save'
+        # dependency|js lib: popper
+        system 'npm install popper.js --save'
+        # dependency|html/css/js lib: bootstrap
+        system 'npm install bootstrap --save'
+        # dependency|css/js lib: materialize
+        system 'npm install materialize-css@next'
+        # dependency|css lib: bulma
+        system 'npm install bulma'
+        # dependency|css file: styles.css
+        system 'npm install style-loader@0.20.2 css-loader@0.28.10 --save-dev'
+
+      # jasmine installation
         # jasmine node module
         system 'npm install jasmine-core@2.99.0 --save-dev'
         # jasmine helper package
@@ -78,7 +91,7 @@ class Project
         # initialize jasmine
         system './node_modules/.bin/jasmine init'
 
-      ## karma installation
+      # karma installation
         # karma test-runner
         system 'npm install karma@2.0.0 --save-dev'
         # integrate jasmine and karma
@@ -96,7 +109,7 @@ class Project
         # initialize karma
         system 'karma init'
 
-      ## babel installation
+      # babel installation
         # core
         system 'npm install babel-core@6.26.0 babel-loader@7.1.3 babel-preset-es2015@6.24.1 --save-dev'
 
@@ -106,7 +119,7 @@ class Project
     # populate spec file with basic template
     File.open("spec/#{@project_name}-spec.js", 'w') { |file|
       file.write(
-        "// import { Constructor } from './../src/#{@project_name}.js'\n\ndescribe('', function() {\n\n  it('', function() {\n    // var example = new Constructor(parameters)\n    // expect(example.method()).toEqual('');\n  });\n});"
+        "// import { Constructor } from './../src/js/#{@project_name}.js'\n\ndescribe('', function() {\n\n  it('', function() {\n    // var example = new Constructor(parameters)\n    // expect(example.method()).toEqual('');\n  });\n});"
       )
     }
 
@@ -126,14 +139,21 @@ class Project
 
     File.open('src/index.html', 'w') { |file|
       file.write(
-        "<!DOCTYPE html>\n<html>\n  <head>\n    <title>#{@project_title}</title>\n  </head>\n  <body>\n    <div class='container'>\n      <h1>#{@project_title}</h1>\n    </div>\n  </body>\n</html>"
+        "<!DOCTYPE html>\n<html>\n  <head>\n    <meta charset='utf-8'>\n<title>#{@project_title}</title>\n  </head>\n  <body>\n  <section class='section'>\n    <div class='container'>\n      <h1 class='title'>#{@project_title}</h1>\n      <p class='subtitle'>Simple template for #{@project_title}.</p>\n    </div>\n  </body>\n</html>"
+        ) }
+
+# index.html
+
+    File.open('src/styles.css', 'w') { |file|
+      file.write(
+        "h1.title {\n  text-align: center;\n}"
         ) }
 
 # main.js
 
     File.open('src/main.js', 'w') { |file|
       file.write(
-        "import './styles.css';\nimport $ from 'jquery';\nimport 'bootstrap/dist/css/bootstrap.min.css';\n//import { **insert prototype name** } from './#{@project_name}.js';\n\n$(document).ready(function() {\n\n});"
+        "import './styles.css';\nimport $ from 'bootstrap';\nimport $ from 'jquery';\nimport $ from 'popper';\nimport $ from 'materialize-css'\nimport $ from 'bulma';\n//import { **insert prototype name** } from './#{@project_name}.js';\n\n$(document).ready(function() {\n\n});"
         ) }
 
 # webpack.config.js

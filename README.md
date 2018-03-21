@@ -90,6 +90,10 @@ $ npm run start
 
 ## Changelog
 
+#### v.1.1.1
+* Adds Dotenv plugin
+* Updates .gitignore
+
 #### v.1.1.0
 * Working version
 * (to be added)

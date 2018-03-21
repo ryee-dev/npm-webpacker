@@ -130,7 +130,7 @@ class Project
 
     File.open('.eslintrc', 'w') { |file|
       file.write(
-        "{\n  'parserOptions': {\n    'ecmaVersion': 6,\n    'sourceType': 'module'\n  },\n  'extends': 'eslint:recommended',\n  'env': {\n    'browser': true,\n    'jquery': true,\n    'node': true,\n    'jasmine': true\n  },\n  'rules': {\n    'semi': 1,\n    'indent': ['warn', 2],\n    'no-console': 'warn',\n    'no-debugger': 'warn',\n    'no-unused-vars': 'warn',\n    'no-mixed-spaces-and-tabs': 'warn'\n  }\n}"
+        "{\n  'parserOptions': {\n    'ecmaVersion': 6,\n    'sourceType': 'module'\n  },\n  'extends': 'eslint:recommended',\n  'env': {\n    'browser': true,\n    'jquery': true,\n    'node': true,\n    'jasmine': true,\n    'es6': true\n  },\n  'rules': {\n    'semi': 1,\n    'indent': ['warn', 2],\n    'no-console': 'warn',\n    'no-debugger': 'warn',\n    'no-unused-vars': 'warn',\n    'no-mixed-spaces-and-tabs': 'warn'\n  }\n}"
         ) }
 
 # index.html
